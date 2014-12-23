@@ -1,0 +1,23 @@
+<h1>Topics</h1>
+
+<p>
+  <% tag_cloud Topic.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</p>
+
+<ul>
+  <% @topics.each do |topic| %>
+    <li>
+      <%= topic.title %>
+      <%= link_to 'Edit', edit_topic_path(topic) %>
+      <%= link_to "Show", topic_path(topic) %>
+      <%= link_to "Delete", topic_path(topic), method: :delete, data: { confirm: 'Are you sure?' } %><br/>
+      <% if topic.tag_list.count >= 1 %>
+        <p>Tags: <%= raw topic.tag_list.map { |t| link_to t, "/topics/tag/#{t}" }.join(', ') %></p>  
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add Topic", new_topic_path %>

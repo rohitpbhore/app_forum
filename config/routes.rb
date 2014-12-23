@@ -53,4 +53,19 @@ AppForum::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  # resources :forums do
+  #   resources :topics do
+  #     resources :comments
+  #   end
+  # end
+
+  get 'topics/tag/:tag', to: 'topics#index', as: :tag
+  
+  resources :topics do
+    resources :comments
+  end
+
+  root 'topics#index'  
+  # root to: 'forums#index'
 end

@@ -1,0 +1,22 @@
+<p>
+  <b>Forum name: <%= @forum.name %></b>
+</p>
+
+<% if !@forum.first.topics.blank? %>
+  <ul>
+    <% @forum.first.topics.each do |a| %>
+      <li id="article_<%= a.id %>">
+        <%= a.text %>
+        <%= link_to 'Destroy', [@forum.first, a], method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <h3>No Topics...</h3>
+<% end %>
+
+
+<%= link_to 'Add topics', new_forum_topic_path(@forum.first) %> | 
+
+<%= link_to 'Show all Forums', forums_path %>
+

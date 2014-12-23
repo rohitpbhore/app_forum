@@ -1,0 +1,10 @@
+<h3> Create Comment </h3>
+<%= simple_form_for([@topic.first, @topic.first.comments.build], :remote=> true) do |f| %>
+  <p>
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

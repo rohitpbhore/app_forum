@@ -43,3 +43,10 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'pry'
+
+gem 'simple_form'
+gem 'friendly_id'
+gem 'acts-as-taggable-on'
+gem 'device'

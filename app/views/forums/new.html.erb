@@ -1,0 +1,23 @@
+<p>
+  <%= form_for :forum, url: forums_path do |f| %>
+
+  <% if @forum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@forum.errors.count, "error") %> prohibited
+        this forum from being saved:</h2>
+      <ul>
+        <% @forum.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+  <% end %>
+</p>
+
+<%= link_to 'Back', forums_path %>

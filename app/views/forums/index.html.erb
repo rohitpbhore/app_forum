@@ -1,0 +1,13 @@
+<h1>Forums</h1>
+
+<ul>
+<% @forums.each do |forum| %>
+  <li>
+    <%= forum.name %>
+    <%= link_to 'Edit', edit_forum_path(forum) %> |
+    <%= link_to "Show", forum_path(forum) %> |
+    <%= link_to "Delete", forum_path(forum), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </li>
+<% end %>
+</ul>
+<%= link_to 'New forum', new_forum_path %>
