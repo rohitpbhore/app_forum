@@ -9,13 +9,11 @@
 <ul>
   <% @topics.each do |topic| %>
     <li>
-      <%= topic.title %>
-      <%= link_to 'Edit', edit_topic_path(topic) %>
-      <%= link_to "Show", topic_path(topic) %>
-      <%= link_to "Delete", topic_path(topic), method: :delete, data: { confirm: 'Are you sure?' } %><br/>
-      <% if topic.tag_list.count >= 1 %>
-        <p>Tags: <%= raw topic.tag_list.map { |t| link_to t, "/topics/tag/#{t}" }.join(', ') %></p>  
-      <% end %>
+      <%= link_to topic.title, topic_path(topic) %>
+      <%#= link_to 'Edit', edit_topic_path(topic) %>
+      <%#= link_to "Show", topic_path(topic) %>
+      <%#= link_to "Delete", topic_path(topic), method: :delete, data: { confirm: 'Are you sure?' } %><br/>
+      <p>Tags: <%= raw topic.tag_list.map { |t| link_to t, "/topics/tag/#{t}" }.join(', ') %></p>  
     </li>
   <% end %>
 </ul>

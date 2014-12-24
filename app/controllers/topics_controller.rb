@@ -2,9 +2,6 @@ class TopicsController < ApplicationController
 	
   # GET /topics
   def index
-    # @topics = topic
-    # @topics = Topic.all
-
     if params[:tag]
       @topics = Topic.tagged_with(params[:tag])
     else
@@ -13,7 +10,6 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       format.html
-      # format.json { render json: @topics }
     end
   end
 
@@ -34,11 +30,6 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
-    # @forum = Forum.find(params[:forum_id])
-    # # binding.pry
-    # @topics = @forum.topics.create(forum_params)
-    # redirect_to user_path(@forum)
-
     @topic = Topic.new
     respond_to do |format|
       format.html
