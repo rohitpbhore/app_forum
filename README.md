@@ -33,7 +33,7 @@ rake db:schema:load
 Start the server
 
 ```
-$ cd blog
+$ cd app_forum
 $ bundle install
 $ rails server
 ```
