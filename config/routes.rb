@@ -72,6 +72,6 @@ AppForum::Application.routes.draw do
     resources :comments
   end
 
-  root 'topics#index'  
+  root 'forums#index'  
   # root to: 'forums#index'
 end

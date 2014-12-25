@@ -6,7 +6,7 @@ ActiveAdmin.register Topic do
   #
   # clear_sidebars
   permit_params :title, :tag_list, :forum_id
-  config.clear_sidebar_sections!
+  # config.clear_sidebar_sections!
 
   # index do
   #   column :id

@@ -1,5 +1,4 @@
 <h1>Topics</h1>
-
 <p>
   <% tag_cloud Topic.tag_counts, %w[s m l] do |tag, css_class| %>
     <%= link_to tag.name, tag_path(tag.name), class: css_class %>
@@ -9,13 +8,14 @@
 <ul>
   <% @topics.each do |topic| %>
     <li>
-      <%= link_to topic.title, topic_path(topic) %>
-      <%#= link_to 'Edit', edit_topic_path(topic) %>
-      <%#= link_to "Show", topic_path(topic) %>
-      <%#= link_to "Delete", topic_path(topic), method: :delete, data: { confirm: 'Are you sure?' } %><br/>
-      <p>Tags: <%= raw topic.tag_list.map { |t| link_to t, "/topics/tag/#{t}" }.join(', ') %></p>  
-    </li>
+      <%= link_to topic.title, topic_path(topic) %> |
+      <%= link_to 'Edit', edit_topic_path(topic) %> |
+      <%= link_to "Delete", topic_path(topic), method: :delete, data: { confirm: 'Are you sure?' } %></br>
+      Tags: <%= raw topic.tag_list.map { |t| link_to t, "/topics/tag/#{t}" }.join(', ') %>
+    </li><br/>
   <% end %>
-</ul>
+</table>
 
-<%= link_to "Add Topic", new_topic_path %>
+<p>
+  <%= link_to "Add Topic", new_topic_path %> | <%= link_to "All Forums", forums_path %>
+</p>

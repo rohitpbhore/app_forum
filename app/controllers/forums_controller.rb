@@ -1,13 +1,11 @@
 class ForumsController < ApplicationController
-	# GET /forums
-  # before_filter :authenticate_user!, except: [:index, :show, :search]
+	
+  # GET /forums
   def index
-    # @forums = forum
     @forums = Forum.all
 
     respond_to do |format|
       format.html
-      # format.json { render json: @forums }
     end
   end
 
@@ -15,9 +13,6 @@ class ForumsController < ApplicationController
   def show
     begin
       @forum = Forum.where(id: params[:id]).includes(:topics)
-
-      # @user = User.where(id: params[:id]).includes(:articles)
-
     rescue ActiveRecord::RecordNotFound
       Rails.logger.warn { "Not found" }
       nil
@@ -38,7 +33,12 @@ class ForumsController < ApplicationController
 
   # GET /forums/1/edit
   def edit
-    @forum = Forum.find(params[:id])
+    begin
+      @forum = Forum.find(params[:id])  
+    rescue ActiveRecord::RecordNotFound
+      Rails.logger.warn { "Not found" }
+      nil
+    end
   end
 
   # forum /forums
@@ -47,7 +47,6 @@ class ForumsController < ApplicationController
 
     respond_to do |format|
       if @forum.save
-        # forumMailer.forum_created(@forum).deliver
         format.html { redirect_to @forum, notice: 'Forum was successfully created.' }
       else
         format.html { render action: "new" }
@@ -57,7 +56,12 @@ class ForumsController < ApplicationController
 
   # PUT /forums/1
   def update
-    @forum = Forum.find(params[:id])
+    begin
+      @forum = Forum.find(params[:id])  
+    rescue ActiveRecord::RecordNotFound
+      Rails.logger.warn { "Not found" }
+      nil
+    end
 
     respond_to do |format|
       if @forum.update_attributes(forum_params)
@@ -70,7 +74,13 @@ class ForumsController < ApplicationController
 
   # DELETE /forums/1
   def destroy
-    @forum = Forum.find(params[:id])
+    begin
+      @forum = Forum.find(params[:id])  
+    rescue ActiveRecord::RecordNotFound
+      Rails.logger.warn { "Not found" }
+      nil
+    end
+
     @forum.destroy
     respond_to do |format|
       format.html { redirect_to forums_url }

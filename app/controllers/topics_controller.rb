@@ -17,6 +17,7 @@ class TopicsController < ApplicationController
   def show
     begin
       @topic = Topic.where(id: params[:id]).includes(:comments)
+      @forum = @topic.first.forum
     rescue ActiveRecord::RecordNotFound
       Rails.logger.warn { "Not found" }
       nil
@@ -56,7 +57,12 @@ class TopicsController < ApplicationController
 
   # PUT /topics/1
   def update
-    @topic = Topic.find(params[:id])
+    begin
+      @topic = Topic.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      Rails.logger.warn { "Not found" }
+      nil
+    end
 
     respond_to do |format|
       if @topic.update_attributes(topic_params)
@@ -69,7 +75,13 @@ class TopicsController < ApplicationController
 
   # DELETE /topics/1
   def destroy
-    @topic = Topic.find(params[:id])
+    begin
+      @topic = Topic.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      Rails.logger.warn { "Not found" }
+      nil
+    end
+    
     @topic.destroy
     respond_to do |format|
       format.html { redirect_to topics_url }

@@ -12,20 +12,29 @@
     </ul>
   </div>
 <% end %>
+  <table>
+    <tr>
+      <td><%= f.label :title %></td>
+      <td><%= f.text_field :title %></td>
+    </tr>
 
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
+    <tr class="field">
+      <td><%= f.label :tag_list, "Tags (separated by commas)" %></td>
+      <td><%= f.text_field :tag_list %></td>
+    </tr>
 
-  <p class="field">
-    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-    <%= f.text_field :tag_list %>
-  </p>
+    <%= f.hidden_field :forum_id, value: params[:forum_id] %>
 
-  <p>
-    <%= f.submit %>
-  </p>
+    <tr>
+      <td><%= f.submit %></td>
+    </tr>
+  </table>
 <% end %>
 
-<%= link_to 'Back', topics_path %>
+<p>
+<% if params[:forum_id].present? %>
+  <%= link_to 'Back', forum_path(params[:forum_id]) %>
+<% else %>
+  <%= link_to 'All Forums', forums_path %>
+<% end %>
+</p>

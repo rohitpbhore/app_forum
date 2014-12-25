@@ -5,7 +5,6 @@ class Topic < ActiveRecord::Base
   has_many :comments
 
   acts_as_taggable
-  # acts_as_taggable_on :title
 
   def to_param
     "#{id} #{title}".parameterize

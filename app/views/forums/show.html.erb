@@ -1,22 +1,22 @@
 <p>
-  <b>Forum name: <%= @forum.name %></b>
+  <b>Forum name: <%= @forum.first.name %></b>
 </p>
 
 <% if !@forum.first.topics.blank? %>
-  <ul>
+<h2> Topics: </h2>
+  <table>
     <% @forum.first.topics.each do |a| %>
-      <li id="article_<%= a.id %>">
-        <%= a.text %>
-        <%= link_to 'Destroy', [@forum.first, a], method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
-      </li>
+      <tr id="topic_<%= a.id %>">
+        <td><%= link_to a.title, topic_path(a) %></td>
+        <td><%= link_to 'Edit', edit_topic_path(a) %></td>
+        <td><%= link_to 'Destroy', [@forum.first, a], method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
 <% else %>
   <h3>No Topics...</h3>
 <% end %>
 
-
-<%= link_to 'Add topics', new_forum_topic_path(@forum.first) %> | 
-
-<%= link_to 'Show all Forums', forums_path %>
-
+<p>
+  <%= link_to 'Add topics', new_forum_topic_path(@forum.first) %> | <%= link_to 'All Forums', forums_path %>
+</p>
