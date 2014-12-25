@@ -7,9 +7,9 @@
   <table>
     <% @forum.first.topics.each do |a| %>
       <tr id="topic_<%= a.id %>">
-        <td><%= link_to a.title, topic_path(a) %></td>
-        <td><%= link_to 'Edit', edit_topic_path(a) %></td>
-        <td><%= link_to 'Destroy', [@forum.first, a], method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to a.title, forum_topic_path(@forum.first, a) %></td>
+        <td><%= link_to 'Edit', edit_forum_topic_path(@forum.first, a) %></td>
+        <td><%= link_to 'Destroy', forum_topic_path(@forum.first, a), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </table>

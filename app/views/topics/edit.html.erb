@@ -1,4 +1,4 @@
-<h1>Editing Topic</h1>
+<h1>Edit Topic</h1>
 
 <p>
   <%= form_for @topic do |f| %>
@@ -36,4 +36,10 @@
   <% end %>
 </p>
 
-<%= link_to 'Back', topics_path %>
+<p>
+<% if params[:forum_id].present? %>
+  <%= link_to 'Back', forum_path(params[:forum_id]) %>
+<% else %>
+  <%= link_to 'All Forums', forums_path %>
+<% end %>
+</p>
