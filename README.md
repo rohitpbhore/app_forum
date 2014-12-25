@@ -13,21 +13,6 @@ You can download the app ("clone the repository") with the command
 
     $ git clone https://github.com/rohitpbhore/app_forum.git
 
-
-### Set Up the Database
-
-You'll need to be in the application root directory:
-
-```
-$ cd blog
-```
-
-Load a schema.rb file into the database
-
-```
-rake db:schema:load
-```
-
 ### Getting Started
 
 Start the server
