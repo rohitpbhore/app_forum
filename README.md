@@ -25,3 +25,7 @@ $ rails server
 
 and go to http://localhost:3000/
 
+Admin Details
+
+URL: http://localhost:3000/admin
+
